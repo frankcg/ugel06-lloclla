@@ -1,0 +1,175 @@
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+	
+
+	<!-- MAIN CONTENT -->
+	<div id="content">
+		<!-- row -->
+		<div class="row">
+			<div class="col-sm-6">				
+				<div class="well well-sm">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-12">
+							<div class="well well-light well-sm no-margin no-padding">
+								<div class="row">
+									<div class="col-sm-12">
+										<div id="myCarousel" class="carousel fade profile-carousel">
+											<ol class="carousel-indicators">
+												<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+												<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+												<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+											</ol>
+											<div class="carousel-inner">
+												<!-- Slide 1 -->
+												<div class="item active">
+													<img src="<?php echo BASE_URL?>public/img/demo/s1.jpg" alt="demo user">
+												</div>
+												<!-- Slide 2 -->
+												<div class="item">
+													<img src="<?php echo BASE_URL?>public/img/demo/s2.jpg" alt="demo user">
+												</div>
+												<!-- Slide 3 -->
+												<div class="item">
+													<img src="<?php echo BASE_URL?>public/img/demo/m3.jpg" alt="demo user">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<div class="row">
+											<div class="col-sm-3 profile-pic">
+												<img src="<?php echo BASE_URL?>public/img/profiles/<?php echo $this->profile->RUTA_IMG; ?>" width="110" height="110">
+												
+													</div>
+													<div class="col-sm-8">
+														<h1><span class="semi-bold"><?php echo $this->profile->NOMBRE; ?></span>
+															<br>
+															<small> <hr> </small></h1>
+
+															<ul class="list-unstyled">
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken"><?php  echo $this->profile->TELEFONO; ?></span> 
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:<?php  echo $this->profile->CORREO; ?>">
+																		<?php  echo $this->profile->CORREO; ?></a>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-building"></i>&nbsp;&nbsp;<span class="txt-color-darken"><?php  echo $this->profile->NOMBRE_AREA; ?></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-building"></i>&nbsp;&nbsp;<span class="txt-color-darken"><?php  echo $this->profile->NOMBRE_OFICINA; ?></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">Creado el: <?php  echo $this->profile->FECHACREACION; ?> </span>
+																	</p>
+																</li>
+															</ul>
+															<hr>
+															<button data-toggle="modal" href="#getusuario" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Actualizar Perfil </button>
+															<br>
+															<br>
+														</div>
+													</div>
+												</div>
+											</div>											
+											<!-- end row -->
+										</div>
+									</div>									
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end row -->
+				</div>
+				<!-- END MAIN CONTENT -->
+			</div>
+		<!-- END MAIN PANEL -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="getusuario" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					Actualizar Perfil
+				</h4>
+			</div>
+			<div class="modal-body no-padding">
+
+				<form id="form_usuario" class="smart-form">
+
+							<fieldset>
+								<section>
+									<div class="row">
+										<label class="label col col-2">USUARIO</label>
+										<div class="col col-10">
+											<label class="input"> <i class="icon-append fa fa-user"></i>
+												<input type="text" class="form-control" readonly="readonly" name="usuario" id="usuario" value="<?php echo $this->profile->IDUSUARIO ?>">
+											</label>
+										</div>
+									</div>
+								</section>
+
+								<section>
+									<div class="row">
+										<label class="label col col-2">CONTRASEÑA</label>
+										<div class="col col-10">
+											<label class="input"> <i class="icon-append fa fa-lock"></i>
+												<input type="password" name="password" id="password" value="<?php echo $this->profile->CONTRASENIA;?>">
+											</label>
+										</div>
+									</div>
+								</section>
+
+								<section>
+									<div class="row">
+										<label class="label col col-2">REPETIR CONTRASEÑA</label>
+										<div class="col col-10">
+											<label class="input"> <i class="icon-append fa fa-lock"></i>
+												<input type="password" name="password2" id="password2" value="<?php echo $this->profile->CONTRASENIA;?>">
+											</label>
+										</div>
+									</div>
+								</section>	
+
+								<section>
+									<div class="row">
+										<label class="label col col-2">SELECCIONA FOTO</label>
+										<div class="col col-10">
+											<label class="input input-file"> 
+												<input type="file" class="form-control" id="archivo" name="archivo">
+											</label>
+										</div>
+									</div>
+								</section>							
+								
+							</fieldset>
+							
+							<footer>							 
+								<button type="button" class="btn btn-primary" id="btn_update_usuario"> <i class="fa fa-save"> Actualizar </i></button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">	Cerrar </button>
+								<div id="div_mensaje">
+				 					<span style="color: red; font-weight: bold;" id='mensaje'></span>
+				 				</div>
+							</footer>
+						</form>
+				</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

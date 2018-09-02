@@ -1,0 +1,297 @@
+<?php
+while ( $reg = $this->panel->fetch_object () ) {
+	$nombre [] = $reg->NOM_INVENTARIO;
+	$total [] = $reg->TOTAL;
+	$activo [] = $reg->ACTIVO;
+	$danado [] = $reg->DANADO;
+	$obsoleto [] = $reg->OBSOLETO;
+	$caducado [] = $reg->CADUCADO;
+}
+
+
+while ( $reg2 = $this->stock->fetch_object () ) {
+    $componente [] = $reg2->NOMBRE;
+    $stock [] = $reg2->STOCK;
+    $asignado [] = $reg2->ASIGNADO;
+    $desasignado [] = $reg2->DISPONIBLES;
+}
+?>
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+
+	<!-- MAIN CONTENT -->
+	<div id="content">
+		<!-- row -->
+		<div class="row">
+			<!-- col -->
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h1 class="page-title txt-color-blueDark text-center well">
+					<!-- PAGE HEADER -->
+					Bienvenido<br>
+					<small class="text-primary"><?php echo $_SESSION['nombre']; ?></small>
+				</h1>
+			</div>
+			<!-- end col -->
+		</div>
+		<!-- end row -->
+
+		<!-- widget grid -->
+		<section id="widget-grid" class="">
+
+            <!-- widget content -->
+            <div class="widget-body">
+
+                <ul id="myTab1" class="nav nav-tabs bordered">
+                    <li class="active">
+                        <a href="#reporte1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i>Reporte 1</a>
+                    </li>
+                    <li>
+                        <a href="#reporte2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-lock"></i>Reporte 2</a>
+                    </li>
+                </ul>
+
+                <div id="myTabContent1" class="tab-content padding-10">
+
+                    <div class="tab-pane fade in active" id="reporte1">
+                        <div class="row">               
+                            <div class="col-md-12 " id="contenedor"
+                            style="width: 100%; height: 400px; margin: 0 auto">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="reporte2">
+                    <div class="row">                
+                    <div class="col-md-10" id="contenedor_stock"
+                        style="width: 100%; height: 400px; margin: 0 auto">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end widget grid -->		
+</div>
+<!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+
+
+<script type="text/javascript">
+
+  Highcharts.chart('contenedor', {
+
+     chart: {
+         type: 'column',
+
+     },
+     title: {
+         text: 'Cantidad de Activos por Inventario'
+     },
+     subtitle: {
+       text: '<a href="<?php echo BASE_URL ?>activo/index">Detalle de Activos</a>'
+   },
+   xAxis: {
+      categories: ['<?php echo join($nombre,"','"); ?>'],
+      crosshair: false,
+      min: 0,
+      max:7,
+
+      title: {
+       text: null
+   }
+},
+
+
+
+scrollbar: {
+    enabled: true,
+    barBackgroundColor: 'gray',
+    barBorderRadius: 7,
+    barBorderWidth: 0,
+    buttonBackgroundColor: 'gray',
+    buttonBorderWidth: 0,
+    buttonArrowColor: 'yellow',
+    buttonBorderRadius: 7,
+    rifleColor: 'yellow',
+    trackBackgroundColor: 'white',
+    trackBorderWidth: 1,
+    trackBorderColor: 'silver',
+    trackBorderRadius: 7
+},
+
+yAxis: {
+
+
+ allowDecimals: false,
+ min: 0,
+ title: {
+     text: 'Activos'
+ },
+ labels: {
+    overflow: 'center'
+}
+},
+tooltip: {
+ headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+ pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+ '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+ footerFormat: '</table>',
+ shared: true,
+ useHTML: true
+},
+
+plotOptions: {
+ column: {
+    dataLabels: {
+       enabled: true
+   },
+   pointPadding: 0.2,
+   borderWidth: 2,
+
+}
+},
+credits: {
+   enabled: false
+},
+series: [{
+
+   name: 'TOTAL',
+   color: 'rgba(0, 163, 255, 0.9)',
+   data: [<?php echo join($total,","); ?>],
+   pointPadding: 0.0,
+   pointPlacement: -0.2
+}, {
+   name: 'ACTIVO',
+   color: 'rgba(0, 255, 10, 0.9)',
+   data: [<?php echo join($activo,","); ?>],
+   pointPadding: 0.0,
+   pointPlacement: -0.2
+}, {
+   name: 'DANADO',
+   color: 'rgba(242, 255, 0, 0.9)',	
+   data: [<?php echo join($danado,","); ?>],
+   pointPadding: 0.0,
+   pointPlacement: -0.2
+}, {
+   name: 'OBSOLETO',
+   color: 'rgba(255, 0, 0, 0.9)',
+   data: [<?php echo join($obsoleto,","); ?>],
+   pointPadding: 0.0,
+   pointPlacement: -0.2
+}, {
+   name: 'CADUCADO',
+   color: 'rgba(255, 100, 5, 0.9)',
+   data: [<?php echo join($caducado,","); ?>],
+   pointPadding: 0.0,
+   pointPlacement: -0.2
+}
+]
+});
+
+
+
+
+
+  Highcharts.chart('contenedor_stock', {
+
+    chart: {
+        type: 'column',
+
+    },
+    title: {
+        text: 'Activos Informaticos disponibles'
+    },
+    subtitle: {
+      text: '<a href="<?php echo BASE_URL ?>activo/index">Detalle de Activos</a>'
+  },
+  xAxis: {
+    categories: ['<?php echo join($componente,"','"); ?>'],
+    crosshair: false,
+    min: 0,
+    max:7,
+
+    title: {
+      text: null
+  }
+},
+
+
+
+scrollbar: {
+    enabled: true,
+    barBackgroundColor: 'gray',
+    barBorderRadius: 7,
+    barBorderWidth: 0,
+    buttonBackgroundColor: 'gray',
+    buttonBorderWidth: 0,
+    buttonArrowColor: 'yellow',
+    buttonBorderRadius: 7,
+    rifleColor: 'yellow',
+    trackBackgroundColor: 'white',
+    trackBorderWidth: 1,
+    trackBorderColor: 'silver',
+    trackBorderRadius: 7
+},
+
+yAxis: {
+
+
+    allowDecimals: false,
+    min: 0,
+    title: {
+        text: 'Activos'
+    },
+    labels: {
+        overflow: 'center'
+    }
+},
+tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+    '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+},
+
+plotOptions: {
+    column: {
+      dataLabels: {
+          enabled: true
+      },
+      pointPadding: 0.2,
+      borderWidth: 2,
+
+  }
+},
+credits: {
+  enabled: false
+},
+series: [{
+
+  name: 'STOCK',
+  color: 'rgba(0, 163, 255, 0.9)',
+  data: [<?php echo join($stock,","); ?>],
+  pointPadding: 0.0,
+  pointPlacement: -0.2
+}, {
+  name: 'ASIGNADO',
+  color: 'rgba(0, 255, 10, 0.9)',
+  data: [<?php echo join($asignado,","); ?>],
+  pointPadding: 0.0,
+  pointPlacement: -0.2
+}, {
+  name: 'DISPONIBLE',
+  color: 'rgba(242, 254, 0, 0.9)',  
+  data: [<?php echo join($desasignado,","); ?>],
+  pointPadding: 0.0,
+  pointPlacement: -0.2
+}
+]
+});
+</script>

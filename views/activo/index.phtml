@@ -1,0 +1,534 @@
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+	<!-- MAIN CONTENT -->
+	<div id="content">
+
+		<!-- widget content -->
+		<div class="widget-body">
+
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active">
+					<a href="#tab_inventario_act" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i>Inventario Actual</a>
+				</li>
+				<li>
+					<a href="#tab_inventario_his" data-toggle="tab"><i class="fa fa-fw fa-lg fa-lock"></i>Inventario Historicos</a>
+				</li>
+				<li>
+					<a href="#tab_transferencia" data-toggle="tab"><i class="fa fa-fw fa-lg fa-exchange "></i>Transferencia Activos</a>
+				</li>
+			</ul>
+
+			<div id="myTabContent1" class="tab-content padding-10">
+
+				<!-- TAB INVENTARIO ACTUAL -->
+				<div class="tab-pane fade in active" id="tab_inventario_act">
+
+					<div class="row">
+						<!--<div class="col-xs-12 col-sm-9 col-md-7 col-lg-4">-->
+						<div class="col-md-6 col-md-offset-3">
+							<h1 class="page-title txt-color-blueDark">
+								<button data-toggle="modal" href="#addactivo" id="btn_nuevo" type="button" class="btn btn-info btn-sm btn-block"> <i class="fa fa-plus"></i> Nuevo Activo </button>
+							</h1>						
+						</div>
+					</div>
+					<!-- widget grid -->
+					<section id="widget-grid" class="">
+						<!-- row -->
+						<div class="row">				
+							<!-- NEW WIDGET START -->
+							<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- Widget ID (each widget will need unique ID)-->
+								<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+
+									<header>
+										<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+										<h2>ACTIVOS </h2>
+									</header>
+
+									<!-- widget div-->
+									<div>
+										<!-- widget content -->
+										<div class="widget-body no-padding">
+											<table id="tablaactivos" class="table table-striped table-bordered table-hover" width="100%">
+												<thead>			                
+													<tr>
+														<th></i>ACTIVO</th>
+														<th></i>MARCA</th>
+														<th>SERIE</th>													
+														<th>MODELO</th>
+														<th>ESTADO</th>
+														<th>CAPACIDAD</th>
+														<th>PERSONAL</th>
+														<th>OFICINA</th>
+														<th>COD. PATRI.</th>
+														<th>ASIGNADO</th>
+														<th>OPCIONES</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<!-- end widget content -->
+									</div>
+									<!-- end widget div -->
+								</div>
+								<!-- end widget -->	
+							</article>
+							<!-- WIDGET END -->		
+						</div>
+						<!-- end row -->
+					</section>
+					<!-- end widget grid -->
+				</div>
+				<!-- END TAB INVENTARIO ACTUAL -->
+
+				<!-- TAB INVENTARIO HISTORICO -->
+				<div class="tab-pane fade" id="tab_inventario_his">
+					<form class="smart-form">
+						<fieldset>
+							<div class="row">
+								
+								<section class="col col-2 ">
+									<select name="idinventario" id="idinventario" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<?php while($reg = $this->inventario->fetch_object()): ?>
+											<option value="<?php echo $reg->IDINVENTARIO ?>" ><?php echo $reg->NOM_INVENTARIO ?></option>
+										<?php endwhile; ?>
+									</select>
+								</section>
+								<section class="col col-2">
+									<button style="width: 100%" type="button" id="btn_procesar_activos" class="btn btn-warning btn-sm">Procesar</button>
+									
+								</section>
+								<section class="col col-4">
+									<div id="div_mensaje_proceso">
+										<span style="color: red; font-weight: bold;" id='mensaje_proceso'></span>
+									</div>
+								</section>
+							</div>
+						</fieldset>
+					</form>
+
+					<!-- widget grid -->
+					<section id="widget-grid" class="">
+						<!-- row -->
+						<div class="row">				
+							<!-- NEW WIDGET START -->
+							<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- Widget ID (each widget will need unique ID)-->
+								<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+
+									<header>
+										<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+										<h2>ACTIVOS HISTORICOS </h2>
+									</header>
+
+									<!-- widget div-->
+									<div>
+										<!-- widget content -->
+										<div class="widget-body no-padding">
+											<table id="tablaactivos_historicos" class="table table-striped table-bordered table-hover" width="100%">
+												<thead>			                
+													<tr>
+														<th>ACTIVO</th>
+														<th>MARCA</th>
+														<th>SERIE</th>
+														<th>MODELO</th>													
+														<th>ESTADO</th>
+														<th>PERSONAL</th>	
+														<th>COD. PATRI.</th>							
+														<th>USER CREACION</th>														
+														<th>FECHA CREACION</th>														
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<!-- end widget content -->
+									</div>
+									<!-- end widget div -->
+								</div>
+								<!-- end widget -->	
+							</article>
+							<!-- WIDGET END -->		
+						</div>
+						<!-- end row -->
+					</section>
+					<!-- end widget grid -->
+				</div>
+				<!-- END TAB INVENTARIO HISTORICO -->
+
+				<!-- TAB TRANSFERENCIA DE ACTIVOS -->
+				<div class="tab-pane fade" id="tab_transferencia">
+
+					<div class="row">
+						
+						<!-- NEW COL START -->
+						<article class="col-sm-12 col-md-12 col-lg-12">
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>Transferencia de Activos</h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+
+										<div class="smart-form">
+
+											<fieldset>
+												<div class="row">
+													<section class="col col-5">
+														<label class="label">Seleccione Personal</label>
+														<select id="idpersonal" name="idpersonal" class="form-control" width ="100%">
+															<option selected="" disabled="">Seleccione</option>
+															<?php while($reg=$this->asignar2->fetch_object()): ?>
+															<option value="<?php echo $reg->IDPERSONA ?>"><?php echo $reg->NOMBRE ?></option>
+															<?php endwhile; ?>
+														</select>  
+													</section>
+												</div>
+											</fieldset>
+
+											<footer>
+												<button id="btn_transferir" type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Transferir </button>
+												<button type="button" id="btn_consultar_transferencia" class="btn btn-primary"><span class="fa fa-refresh "></span> Consultar </button>
+												<div id="div_transfer">
+													<span style="color: red; font-weight: bold;" id='transfer'></span>
+												</div>						
+											</footer>
+										</div>
+
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+
+						</article>
+						<!-- END COL -->
+
+					</div>
+
+
+					<!-- widget grid -->
+					<section id="widget-grid" class="">
+						<form id="form_transferencia">
+							<!-- row -->
+							<div class="row">				
+								<!-- NEW WIDGET START -->
+								<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<!-- Widget ID (each widget will need unique ID)-->
+									<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+
+										<header>
+											<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+											<h2>TRANSFERENCIA ACTIVOS</h2>
+										</header>
+
+
+										<!-- widget div-->
+										<div>
+											<!-- widget content -->
+											<div class="widget-body no-padding table-responsive">
+												<table id="tablatransferencia" class="table table-striped table-bordered table-hover" width="100%">
+													<thead>			                
+														<tr>
+															<th><input type="checkbox" name="marcarTodo" id="marcarTodo" /></th>
+															<th>ACTIVO</th>
+															<th>MARCA</th>
+															<th>MODELO</th>
+															<th>SERIE</th>													
+															<th>ESTADO</th>
+															<th>COD. PATRI.</th>
+															<th>INVENTARIO</th>														
+														</tr>
+													</thead>
+													<tbody>
+													</tbody>
+												</table>
+											</div>
+											<!-- end widget content -->
+										</div>
+										<!-- end widget div -->
+
+									</div>
+									<!-- end widget -->	
+								</article>
+								<!-- WIDGET END -->		
+							</div>
+							<!-- end row -->
+						</form>
+					</section>
+					<!-- end widget grid -->
+				</div>
+				<!-- END TAB TRANSFERENCIA DE ACTIVOS -->
+
+			</div>
+
+		</div>
+		<!-- end widget content -->
+
+	</div>
+	<!-- END MAIN CONTENT -->
+
+</div>
+<!-- END MAIN PANEL -->
+
+<!-- MODAL NEW ACTIVO -->
+<div class="modal fade" id="addactivo" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="title"></h4>
+			</div>
+			<div class="modal-body no-padding">
+
+				<form id="login-form" class="smart-form">
+
+					<fieldset>
+					<div style="display: none;">
+						<input type="text" name="idactivo" id="idactivo">
+						<input type="text" name="getidinventario" id="getidinventario">
+					</div>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">COMPONENTE</label>
+								<div class="col col-10">
+									<select name="componente" id="componente" style="width: 100%" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<?php while($reg=$this->componente->fetch_object()): ?>
+											<option value="<?php echo (int) $reg->IDCOMPONENTE; ?>" > <?php echo $reg->NOMBRE?></option>
+										<?php endwhile; ?>
+									</select>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">MODELO</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="modelo" id="modelo" >
+									</label>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">MARCA</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="marca" id="marca" >
+									</label>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">SERIE</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="serie" id="serie">
+									</label>
+								</div>
+							</div>
+						</section>
+
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">CAPACIDAD</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="capacidad" id="capacidad">
+									</label>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">ESTADO</label>
+								<div class="col col-10">
+									<select name="status" id="status" style="width: 100%" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<option value="1" >ACTIVO</option>
+										<option value="0" >OBSOLETO</option>
+										<option value="2" >DAÑADO</option>
+										<option value="3" >CADUCADO</option>
+									</select>
+								</div>
+							</div>
+						</section>
+
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">CADUCIDAD</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="caducidad" id="caducidad">
+									</label>
+								</div>
+							</div>
+						</section>
+
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">TIPO</label>
+								<div class="col col-10">
+									<select name="tipo" id="tipo" style="width: 100%" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<option value="1" selected="selected">HARDWARE</option>
+										<option value="0" >SOFTWARE</option>
+									</select>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">MEDIO INGRESO</label>
+								<div class="col col-10">
+									<select name="medioingreso" id="medioingreso" style="width: 100%" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<option value="PECOSA">PECOSA</option>
+										<option value="CAJACHICA" >CAJA CHICA</option>
+									</select>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">COD. INGRESO</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="codingreso" id="codingreso" >
+									</label>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">COD. PATRIMONIO</label>
+								<div class="col col-10">
+									<label class="input"> <i class="icon-append fa fa-user"></i>
+										<input type="text" class="" name="patrimonio" id="patrimonio" >
+									</label>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">DESCRIPCION</label>
+								<div class="col col-10">
+									<label class="textarea"> <i class="icon-append fa fa-comment"></i>								
+										<textarea rows="5" id="descripcion" name="descripcion" placeholder="Ingrese Descripcion"></textarea> 
+									</label>
+								</div>
+							</div>
+						</section>	
+
+
+					</fieldset>
+
+					<footer>
+
+						<button type="button" class="btn btn-primary" id="btn_grabar_activo"> <i class="fa fa-save"> Guardar </i></button>
+						<button type="button" class="btn btn-primary" id="btn_actualizar_activo"> <i class="fa fa-save"> Actualizar </i></button>
+						<button type="button" class="btn btn-info" id="btn_asignar_activo" data-toggle="modal" 	data-target="#asignaractivo"> <i class="fa fa-user"> Asignar </i></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">	Cerrar </button>
+
+						<!-- mensaje de salida -->
+						<div id="div_mensaje">
+							<span style="color: red; font-weight: bold;" id='mensaje'></span>
+						</div>
+					</footer>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- END MODAL NEW ACTIVO -->
+
+
+
+<!-- MODAL NEW ACTIVO -->
+<div class="modal fade" id="asignaractivo" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="title">Asignar Activo</h4>
+			</div>
+			<div class="modal-body no-padding">
+
+				<form id="login-form" class="smart-form">
+
+					<fieldset>
+						<input style="display: none;" type="text" name="idactivo2" id="idactivo2">
+
+						<section>
+							<div class="row">
+								<label class="label col col-2">ASIGNAR A: </label>
+								<div class="col col-10">
+									<select name="idpersona" id="idpersona" style="width: 100%" class="form-control">
+										<option value="" selected="selected">SELECCIONE</option>
+										<?php while($reg=$this->asignar->fetch_object()): ?>
+											<option value="<?php echo $reg->IDPERSONA; ?>" > <?php echo $reg->NOMBRE ?></option>
+										<?php endwhile; ?>
+									</select>
+								</div>
+							</div>
+						</section>	
+
+
+
+					</fieldset>
+
+					<footer>
+
+						<button type="button" class="btn btn-primary" id="btn_asignar"> <i class="fa fa-save"> Guardar </i></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">	Cerrar </button>
+
+						<!-- mensaje de salida -->
+						<div id="div_mensaje_asignar">
+							<span style="color: red; font-weight: bold;" id='mensaje_asignar'></span>
+						</div>
+					</footer>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- END MODAL NEW ACTIVO

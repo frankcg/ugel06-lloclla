@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+	<meta charset="utf-8">
+	<title>UGEL 06 </title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<script src="<?php echo BASE_URL ?>public/js/libs/jquery-2.1.1.min.js"></script> 
+	<script src="<?php echo BASE_URL ?>public/js/libs/jquery-ui-1.10.3.min.js"></script>	
+
+	<!-- #CSS Links -->
+	<!-- Basic Styles -->
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/font-awesome.min.css">
+
+	<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/smartadmin-production-plugins.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/smartadmin-production.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/smartadmin-skins.min.css">
+
+	<!-- SmartAdmin RTL Support -->
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/smartadmin-rtl.min.css"> 
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		     <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		     <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo BASE_URL ?>public/css/demo.min.css">
+
+		     <!-- #FAVICONS -->
+		     <link rel="shortcut icon" href="<?php echo BASE_URL ?>public/img/icono.ico" type="image/x-icon">
+		     <link rel="icon" href="<?php echo BASE_URL ?>public/img/icono.ico" type="image/x-icon">
+
+		     <!-- #GOOGLE FONT -->
+		     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+
+		     <!-- #APP SCREEN / ICONS -->
+		<!-- Specifying a Webpage Icon for Web Clip 
+		Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="<?php echo BASE_URL ?>public/img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="<?php echo BASE_URL ?>public/img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="<?php echo BASE_URL ?>public/img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="<?php echo BASE_URL ?>public/img/splash/touch-icon-ipad-retina.png">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="<?php echo BASE_URL ?>public/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="<?php echo BASE_URL ?>public/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="<?php echo BASE_URL ?>public/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+		<?php if(isset($_layoutParams['js']) && count($_layoutParams['js'])): ?>
+			<?php foreach($_layoutParams['js'] as $layout): ?>
+				<script src="<?php echo  $layout ?>" type="text/javascript"></script>
+			<?php endforeach; ?>
+		<?php endif; ?>
+
+	</head>
+
+	<body style="overflow:hidden !important;" class="animated fadeInDown">
+
+		<header id="header" style="background: #59585d !important;">
+
+			<div id="logo-group">
+				<span id="logo"> <img src="<?php echo BASE_URL ?>public/img/logo_ugel06.jpg" alt="UGEL06"> </span>
+			</div>		
+
+		</header>
+
+		<div id="main" role="main">
+
+			<!-- MAIN CONTENT -->
+			<div id="content" class="container">
+
+				<div class="row col-md-6 col-md-offset-3">
+					
+					<div>
+						<div class="well no-padding">
+							<form id="login-form" class="smart-form client-form">
+								<header class="text-center">Control de Acceso</header>
+
+								<fieldset>
+									
+									<section>
+										<label class="label">Usuario: </label>
+										<label class="input"><i class="icon-append fa fa-user"></i>
+											<input type="text" maxlength="15" name="usuario" id="usuario" autocomplete="off">
+											<i class="txt-color-teal" id="mensaje_user"></i>
+										</label>
+									</section>
+
+									<section>
+										<label class="label">Password: </label>
+										<label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="password" maxlength="50" name="password" id="password" autocomplete="off"><i class="txt-color-teal" id="mensaje_pass"></i>
+										</label>
+												
+									</section>
+
+								</fieldset>
+
+								<footer>
+									<button type="button" class="btn btn-primary" id="btn_ingresar">Ingresar</button>
+									<i style="color: red;" class="fa fa-warning" id="mensaje"></i>
+								</footer>
+
+							</form>
+
+						</div>
+
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!--================================================== -->	
+<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+<script src="<?php echo BASE_URL ?>public/js/plugin/pace/pace.min.js"></script>
+
+<!-- IMPORTANT: APP CONFIG -->
+<script src="<?php echo BASE_URL ?>public/js/app.config.js"></script>
+
+
+<!-- BOOTSTRAP JS -->		
+<script src="<?php echo BASE_URL ?>public/js/bootstrap/bootstrap.min.js"></script>
+
+<!-- JQUERY VALIDATE -->
+<script src="<?php echo BASE_URL ?>public/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+<!-- JQUERY MASKED INPUT -->
+<script src="<?php echo BASE_URL ?>public/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+<!-- MAIN APP JS FILE -->
+<script src="<?php echo BASE_URL ?>public/js/app.min.js"></script>	
+
+</body>
+</html>

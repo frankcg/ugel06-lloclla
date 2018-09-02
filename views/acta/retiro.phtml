@@ -1,0 +1,166 @@
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+
+	
+	<!-- MAIN CONTENT -->
+	<div id="content">
+
+		<form id="form_actaretiro">
+
+			<!-- widget grid -->
+			<section id="widget-grid" class="">
+
+				<!-- START ROW -->
+				<div class="row">
+
+					<!-- NEW COL START -->
+					<article class="col-sm-12 col-md-12 col-lg-12">
+
+						<!-- Widget ID (each widget will need unique ID)-->
+						<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+
+							<header>
+								<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+								<h2>Acta de Retiro</h2>
+
+							</header>
+
+							<!-- widget div-->
+							<div>
+
+								<!-- widget edit box -->
+								<div class="jarviswidget-editbox">
+									<!-- This area used as dropdown edit box -->
+
+								</div>
+								<!-- end widget edit box -->
+
+								<!-- widget content -->
+								<div class="widget-body no-padding">
+
+									<div class="smart-form">
+
+										<fieldset>
+											<div class="row">
+												<section class="col col-4">
+													<label class="label">Seleccione Nombre del Personal</label>
+
+													<select id="idpersonal" name="idpersonal" class="select2 form-control" >
+														<option selected="" disabled="">Seleccione</option>
+														<?php while($reg=$this->personal->fetch_object()): ?>
+															<option value="<?php echo $reg->IDPERSONA ?>"><?php echo $reg->NOMBRE ?></option>
+														<?php endwhile; ?>
+													</select>  
+												</section>
+										</fieldset>
+
+
+											<footer>
+												<button type="button" id="btn_consultar" class="btn btn-primary"><span class="fa fa-refresh "></span> Consultar </button>
+												<a type="button" id="btn_procesar" target="_blank" class="btn btn-info"><span class="fa fa-file-pdf-o"></span> Procesar y Generar Acta</a>
+												<div id="div_mensaje">
+													<span style="color: red; font-weight: bold;" id='mensaje'></span>
+												</div>						
+											</footer>
+										</div>
+
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+
+						</article>
+						<!-- END COL -->
+
+					</div>
+
+					<!-- END ROW -->			
+
+
+				</section>
+				<!-- end widget grid -->
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+					<!-- row -->
+					<div class="row">
+
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Resultado</h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+
+										<table id="tablaactaretiro" class="table table-striped table-bordered table-hover table-responsive" width="100%">
+											<thead>	                
+												<tr>										
+													<th><input type="checkbox" name="marcarTodo" id="marcarTodo" /></th>
+													<th>COMPONENTE</th>
+													<th>MODELO</th>
+													<th>MARCA</th>
+													<th>SERIE</th>
+													<th>CAPACIDAD</th>
+													<th>ESTADO</th>					
+													<th>TIPO</th>
+													<th>DESCRIPCION</th>
+													<th>NUEVO ESTADO</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->	
+
+
+
+						</article>
+						<!-- WIDGET END -->
+
+					</div>
+
+					<!-- end row -->
+
+					<!-- end row -->
+
+				</section>
+				<!-- end widget grid -->
+
+			</form>
+
+		</div>
+		<!-- END MAIN CONTENT -->
+
+	</div>
+	<!-- END MAIN PANEL -->
